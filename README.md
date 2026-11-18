@@ -1,8 +1,6 @@
-# profile — Ken (ruanhou23)
+# profile — Ken
 
 Trang profile cá nhân của Ken — lập trình viên, làm video AI, fan anime.
-
-🌐 **Demo:** https://ruanhou23.github.io/profile/
 
 ## Xem web
 

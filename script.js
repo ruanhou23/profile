@@ -1,17 +1,17 @@
-// Ken — ruanhou23 | profile scripts
+// Ken | profile scripts
 
 const projects = [
   {
     name: "Muse AI Batch Studio",
     desc: "Tool làm video AI hàng loạt: nhập ý tưởng, tự chia cảnh, viết prompt, render clip và lồng tiếng clone giọng mình.",
     tags: ["Python", "Flask", "Muse AI"],
-    link: "https://github.com/ruanhou23/tool-my-Private"
+    link: "#projects"
   },
   {
     name: "Game Beta Test",
     desc: "Game sinh tồn người que: Max làm nhân vật chính, vẽ bằng code trên canvas 2D, vòng buôn vàng 2 thế giới, đêm trăng máu.",
     tags: ["JavaScript", "Canvas 2D"],
-    link: "https://github.com/ruanhou23/game-beta-test"
+    link: "#projects"
   },
   {
     name: "Chibi Explainer Videos",

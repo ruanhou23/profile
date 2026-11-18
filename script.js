@@ -329,3 +329,117 @@ if (animeFilters) {
     });
   });
 }
+
+// Game bắt sao: sao rơi từ trên xuống, bấm để bắt, chơi 30 giây
+(function () {
+  const canvas = document.getElementById("game-canvas");
+  if (!canvas || !canvas.getContext) return;
+  const ctx = canvas.getContext("2d");
+  const W = 640, H = 360, DURATION = 30;
+  const scoreEl = document.getElementById("game-score");
+  const timeEl = document.getElementById("game-time");
+  const bestEl = document.getElementById("game-best");
+  const msgEl = document.getElementById("game-msg");
+  const startBtn = document.getElementById("game-start");
+  const restartBtn = document.getElementById("game-restart");
+  let best = 0;
+  try { best = parseInt(localStorage.getItem("starGameBest") || "0", 10) || 0; } catch (e) {}
+  if (bestEl) bestEl.textContent = best;
+  let stars = [], score = 0, timeLeft = DURATION, playing = false, raf = null, lastSpawn = 0, lastTick = 0;
+
+  function drawStar(x, y, r, color) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    for (let i = 0; i < 10; i++) {
+      const rr = i % 2 === 0 ? r : r * 0.45;
+      const a = -Math.PI / 2 + i * Math.PI / 5;
+      ctx[i === 0 ? "moveTo" : "lineTo"](Math.cos(a) * rr, Math.sin(a) * rr);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+  function spawnStar() {
+    stars.push({
+      x: 24 + Math.random() * (W - 48),
+      y: -20,
+      r: 12 + Math.random() * 8,
+      speed: 60 + Math.random() * 90,
+      color: Math.random() < 0.25 ? "#00e5ff" : (Math.random() < 0.2 ? "#ff2d78" : "#ffd94d")
+    });
+  }
+  function draw(now) {
+    ctx.clearRect(0, 0, W, H);
+    if (!playing) {
+      ctx.fillStyle = "rgba(238, 240, 255, 0.7)";
+      ctx.font = "20px sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("Bấm “Chơi” để bắt đầu bắt sao!", W / 2, H / 2);
+      return;
+    }
+    const dt = Math.min((now - lastTick) / 1000, 0.05);
+    lastTick = now;
+    if (now - lastSpawn > 450) { spawnStar(); lastSpawn = now; }
+    stars = stars.filter(function (s) {
+      s.y += s.speed * dt;
+      return s.y - s.r < H + 10;
+    });
+    stars.forEach(function (s) { drawStar(s.x, s.y, s.r, s.color); });
+    raf = requestAnimationFrame(draw);
+  }
+  function endGame() {
+    playing = false;
+    if (raf) cancelAnimationFrame(raf);
+    raf = null;
+    if (score > best) {
+      best = score;
+      try { localStorage.setItem("starGameBest", String(best)); } catch (e) {}
+      if (bestEl) bestEl.textContent = best;
+      if (msgEl) msgEl.textContent = "Hết giờ! Bạn được " + score + " điểm — kỷ lục mới!";
+    } else if (msgEl) {
+      msgEl.textContent = "Hết giờ! Bạn được " + score + " điểm. Kỷ lục hiện tại: " + best + ".";
+    }
+    if (startBtn) startBtn.disabled = false;
+  }
+  function startGame() {
+    stars = [];
+    score = 0;
+    timeLeft = DURATION;
+    playing = true;
+    if (scoreEl) scoreEl.textContent = "0";
+    if (timeEl) timeEl.textContent = String(DURATION);
+    if (msgEl) msgEl.textContent = "Đang chơi — bấm vào sao để bắt!";
+    if (startBtn) startBtn.disabled = true;
+    lastSpawn = performance.now();
+    lastTick = performance.now();
+    const timer = setInterval(function () {
+      if (!playing) { clearInterval(timer); return; }
+      timeLeft -= 1;
+      if (timeEl) timeEl.textContent = String(Math.max(timeLeft, 0));
+      if (timeLeft <= 0) { clearInterval(timer); endGame(); }
+    }, 1000);
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(draw);
+  }
+  canvas.addEventListener("click", function (e) {
+    if (!playing) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width * W;
+    const y = (e.clientY - rect.top) / rect.height * H;
+    for (let i = stars.length - 1; i >= 0; i--) {
+      const s = stars[i];
+      const dx = x - s.x, dy = y - s.y;
+      if (dx * dx + dy * dy <= (s.r + 6) * (s.r + 6)) {
+        stars.splice(i, 1);
+        score += 1;
+        if (scoreEl) scoreEl.textContent = String(score);
+        break;
+      }
+    }
+  });
+  if (startBtn) startBtn.addEventListener("click", startGame);
+  if (restartBtn) restartBtn.addEventListener("click", startGame);
+  draw(performance.now());
+})();

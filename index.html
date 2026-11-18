@@ -20,6 +20,7 @@
       <a href="#projects">Dự án</a>
       <a href="#anime">Anime</a>
       <a href="#music">Nhạc</a>
+      <a href="#game">Game</a>
       <a href="#contact">Liên hệ</a>
     </div>
     <button class="nav-btn" id="theme-toggle" type="button" aria-label="Chuyển sang giao diện sáng">☀ Sáng</button>
@@ -170,6 +171,24 @@
       </div>
       <div class="music-grid" id="music-grid"></div>
       <noscript><p>Nhạc yêu thích: Nan Khước, Tỳ Bà Khúc, Du Sơn Luyến (Remix), Quan Sơn Tửu, Thập Niên Nhân Gian, Tứ Ngã.</p></noscript>
+    </section>
+
+    <section id="game" class="section reveal">
+      <h2><span class="jp">ゲーム</span> Bắt sao</h2>
+      <p class="section-note">Bấm vào các ngôi sao rơi để ghi điểm — 30 giây, bắt càng nhiều càng tốt!</p>
+      <div class="game-wrap">
+        <canvas id="game-canvas" width="640" height="360"></canvas>
+        <div class="game-bar">
+          <span>Điểm: <strong id="game-score">0</strong></span>
+          <span>Thời gian: <strong id="game-time">30</strong>s</span>
+          <span>Kỷ lục: <strong id="game-best">0</strong></span>
+        </div>
+        <div class="game-actions">
+          <button class="btn" id="game-start" type="button">Chơi</button>
+          <button class="btn btn-ghost" id="game-restart" type="button">Chơi lại</button>
+        </div>
+        <p class="game-msg" id="game-msg">Bấm “Chơi” để bắt đầu!</p>
+      </div>
     </section>
 
     <section id="contact" class="section reveal">

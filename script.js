@@ -66,4 +66,27 @@ if (typingEl) {
   tick();
 }
 
-// @@more@@
+// Scroll reveal: hiện dần các mục khi cuộn tới
+const revealEls = document.querySelectorAll(".reveal");
+const revealObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(function (el) { revealObserver.observe(el); });
+
+// Skill bars: chạy tới % khi cuộn tới
+const bars = document.querySelectorAll(".bar i");
+const barObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      el.style.width = el.getAttribute("data-w") + "%";
+      barObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.4 });
+bars.forEach(function (el) { barObserver.observe(el); });

@@ -142,3 +142,40 @@ const nextBtn = document.getElementById("next-track");
 if (nextBtn) nextBtn.addEventListener("click", function () { playTrack(currentTrack < 0 ? 0 : currentTrack + 1); });
 
 renderMusic();
+
+// Starfield: nền sao nhấp nháy (~120 sao, tôn trọng prefers-reduced-motion)
+(function () {
+  const canvas = document.getElementById("stars");
+  if (!canvas || !canvas.getContext) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const ctx = canvas.getContext("2d");
+  const COUNT = 120;
+  let stars = [], w = 0, h = 0;
+  function makeStar() {
+    return { x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.4 + 0.4, p: Math.random() * Math.PI * 2, s: 0.008 + Math.random() * 0.02 };
+  }
+  function init() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    stars = [];
+    for (let i = 0; i < COUNT; i++) stars.push(makeStar());
+  }
+  function tick() {
+    ctx.clearRect(0, 0, w, h);
+    for (let i = 0; i < stars.length; i++) {
+      const st = stars[i];
+      st.p += st.s;
+      const a = 0.35 + 0.65 * Math.abs(Math.sin(st.p));
+      ctx.globalAlpha = a;
+      ctx.fillStyle = i % 5 === 0 ? "#00e5ff" : (i % 7 === 0 ? "#ff2d78" : "#ffffff");
+      ctx.beginPath();
+      ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(tick);
+  }
+  window.addEventListener("resize", init);
+  init();
+  requestAnimationFrame(tick);
+})();

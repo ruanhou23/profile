@@ -28,6 +28,24 @@ a:hover { text-decoration: underline; }
 
 main { max-width: 960px; margin: 0 auto; padding: 0 20px 40px; }
 
+/* --- Nền sao + vệt sáng aurora --- */
+#stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.aurora i { position: absolute; width: 55vw; height: 55vw; border-radius: 50%; filter: blur(70px); opacity: 0.28; animation: auroraDrift 26s ease-in-out infinite alternate; }
+.aurora i:nth-child(1) { background: radial-gradient(circle, #ff2d78, transparent 65%); top: -12%; left: -8%; }
+.aurora i:nth-child(2) { background: radial-gradient(circle, #00e5ff, transparent 65%); top: 32%; right: -14%; animation-delay: -8s; }
+.aurora i:nth-child(3) { background: radial-gradient(circle, #7b2dff, transparent 65%); bottom: -18%; left: 30%; animation-delay: -16s; }
+@keyframes auroraDrift { from { transform: translate(0, 0) scale(1); } to { transform: translate(6vw, -4vh) scale(1.15); } }
+
+.hero, main, footer { position: relative; z-index: 1; }
+
+/* Card kính mờ */
+.about-list li, .skill, .project-card, .anime-card {
+  background: rgba(18, 18, 31, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
 /* --- Hero --- */
 .hero {
   min-height: 92vh;
@@ -37,9 +55,8 @@ main { max-width: 960px; margin: 0 auto; padding: 0 20px 40px; }
   text-align: center;
   padding: 64px 20px;
   background:
-    radial-gradient(600px 300px at 20% 10%, rgba(255, 45, 120, 0.18), transparent 60%),
-    radial-gradient(600px 300px at 80% 90%, rgba(0, 229, 255, 0.14), transparent 60%),
-    var(--bg);
+    radial-gradient(600px 300px at 20% 10%, rgba(255, 45, 120, 0.16), transparent 60%),
+    radial-gradient(600px 300px at 80% 90%, rgba(0, 229, 255, 0.12), transparent 60%);
 }
 
 .hero-inner { max-width: 720px; }
@@ -60,7 +77,16 @@ main { max-width: 960px; margin: 0 auto; padding: 0 20px 40px; }
   font-weight: 700;
 }
 
-.hero h1 { font-size: 3rem; line-height: 1.15; margin: 8px 0 4px; }
+.hero h1 {
+  font-size: 3rem; line-height: 1.15; margin: 8px 0 4px;
+  background: linear-gradient(90deg, #ff2d78, #ff5c39, #00e5ff, #ff2d78);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradShift 6s linear infinite;
+}
+@keyframes gradShift { to { background-position: 200% center; } }
 .grad {
   background: linear-gradient(90deg, var(--pink), var(--cyan));
   -webkit-background-clip: text;

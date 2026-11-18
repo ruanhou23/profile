@@ -179,3 +179,23 @@ renderMusic();
   init();
   requestAnimationFrame(tick);
 })();
+
+// Chuyển giao diện sáng/tối (lưu vào localStorage, mặc định tối)
+const themeBtn = document.getElementById("theme-toggle");
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  try { localStorage.setItem("theme", theme); } catch (e) {}
+  if (themeBtn) {
+    themeBtn.textContent = theme === "light" ? "☾ Tối" : "☀ Sáng";
+    themeBtn.setAttribute("aria-label", theme === "light" ? "Chuyển sang giao diện tối" : "Chuyển sang giao diện sáng");
+  }
+}
+if (themeBtn) {
+  themeBtn.addEventListener("click", function () {
+    const cur = document.documentElement.getAttribute("data-theme") || "dark";
+    applyTheme(cur === "light" ? "dark" : "light");
+  });
+}
+let savedTheme = "dark";
+try { savedTheme = localStorage.getItem("theme") || "dark"; } catch (e) {}
+applyTheme(savedTheme === "light" ? "light" : "dark");

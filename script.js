@@ -168,12 +168,53 @@ function playTrack(i) {
   document.querySelectorAll(".music-card").forEach(function (card, idx) {
     card.classList.toggle("active", idx === currentTrack);
   });
+  updateNavButtons();
+}
+
+let repeatAll = false;
+
+function updateNavButtons() {
+  const prev = document.getElementById("prev-track");
+  const next = document.getElementById("next-track");
+  if (prev) prev.disabled = !repeatAll && currentTrack === 0;
+  if (next) next.disabled = !repeatAll && currentTrack === tracks.length - 1;
+}
+
+function stepTrack(dir) {
+  if (currentTrack < 0) { playTrack(dir > 0 ? 0 : tracks.length - 1); return; }
+  let next = currentTrack + dir;
+  if (repeatAll) {
+    next = (next + tracks.length) % tracks.length;
+  } else {
+    next = Math.max(0, Math.min(tracks.length - 1, next));
+  }
+  playTrack(next);
 }
 
 const prevBtn = document.getElementById("prev-track");
-if (prevBtn) prevBtn.addEventListener("click", function () { playTrack(currentTrack < 0 ? tracks.length - 1 : currentTrack - 1); });
+if (prevBtn) prevBtn.addEventListener("click", function () { stepTrack(-1); });
 const nextBtn = document.getElementById("next-track");
-if (nextBtn) nextBtn.addEventListener("click", function () { playTrack(currentTrack < 0 ? 0 : currentTrack + 1); });
+if (nextBtn) nextBtn.addEventListener("click", function () { stepTrack(1); });
+
+// Phát ngẫu nhiên: chọn bài khác bài đang phát
+const shuffleBtn = document.getElementById("shuffle-track");
+if (shuffleBtn) shuffleBtn.addEventListener("click", function () {
+  let next = currentTrack;
+  while (next === currentTrack && tracks.length > 1) {
+    next = Math.floor(Math.random() * tracks.length);
+  }
+  playTrack(next);
+});
+
+// Lặp lại: bật/tắt lặp toàn danh sách (nút trước/sau quay vòng khi bật)
+const repeatBtn = document.getElementById("repeat-track");
+if (repeatBtn) repeatBtn.addEventListener("click", function () {
+  repeatAll = !repeatAll;
+  repeatBtn.textContent = repeatAll ? "Lặp lại: Bật" : "Lặp lại: Tắt";
+  repeatBtn.setAttribute("aria-pressed", repeatAll ? "true" : "false");
+  repeatBtn.classList.toggle("active", repeatAll);
+  updateNavButtons();
+});
 
 renderMusic();
 

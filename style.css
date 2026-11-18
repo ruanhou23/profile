@@ -496,3 +496,11 @@ body { padding-top: 56px; }
 }
 .search-input::placeholder { color: var(--muted); }
 .search-input:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 16px rgba(255, 45, 120, 0.3); }
+
+/* --- Nút nhạc: ngẫu nhiên / lặp lại --- */
+.player-controls-2 { justify-content: center; }
+.btn:disabled { opacity: 0.45; cursor: default; filter: none; }
+.btn.active {
+  background: linear-gradient(90deg, var(--pink), #ff5c39);
+  border-color: var(--pink); color: #fff;
+}

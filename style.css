@@ -469,3 +469,18 @@ body { padding-top: 56px; }
 }
 .timeline h3 { font-size: 1.1rem; }
 .timeline p { color: var(--muted); font-size: 0.95rem; }
+
+/* --- Chip lọc (anime + dự án) --- */
+.filter-chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 4px; }
+.chip {
+  padding: 8px 18px; border-radius: 999px;
+  border: 1px solid var(--cyan); color: var(--cyan);
+  background: transparent; cursor: pointer; font-weight: 700; font-size: 0.9rem;
+}
+.chip:hover { background: rgba(0, 229, 255, 0.12); }
+.chip.active {
+  background: linear-gradient(90deg, var(--pink), #ff5c39);
+  border-color: var(--pink); color: #fff;
+  box-shadow: 0 0 16px rgba(255, 45, 120, 0.4);
+}
+.anime-card.hidden { display: none; }

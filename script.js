@@ -239,3 +239,18 @@ const statObserver = new IntersectionObserver(function (entries) {
   });
 }, { threshold: 0.4 });
 statNums.forEach(function (el) { statObserver.observe(el); });
+
+// Lọc anime theo thể loại
+const animeFilters = document.getElementById("anime-filters");
+if (animeFilters) {
+  animeFilters.addEventListener("click", function (e) {
+    const btn = e.target.closest(".chip");
+    if (!btn) return;
+    animeFilters.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("active"); });
+    btn.classList.add("active");
+    const f = btn.getAttribute("data-filter");
+    document.querySelectorAll(".anime-card").forEach(function (card) {
+      card.classList.toggle("hidden", f !== "all" && card.getAttribute("data-genre") !== f);
+    });
+  });
+}

@@ -484,3 +484,15 @@ body { padding-top: 56px; }
   box-shadow: 0 0 16px rgba(255, 45, 120, 0.4);
 }
 .anime-card.hidden { display: none; }
+
+/* --- Công cụ lọc + tìm kiếm dự án --- */
+.project-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.project-tools .filter-chips { margin: 0; flex: 1; }
+.search-input {
+  padding: 10px 16px; border-radius: 999px;
+  border: 1px solid var(--cyan);
+  background: transparent; color: var(--text);
+  font-size: 0.95rem; min-width: 200px; flex: 0 1 260px;
+}
+.search-input::placeholder { color: var(--muted); }
+.search-input:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 16px rgba(255, 45, 120, 0.3); }

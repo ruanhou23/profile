@@ -172,4 +172,18 @@ main { max-width: 960px; margin: 0 auto; padding: 0 20px 40px; }
 }
 .project-link { font-weight: 700; margin-top: auto; }
 
+/* --- Anime --- */
+.anime-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+.anime-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.anime-card:hover { transform: translateY(-4px); border-color: var(--cyan); }
+.anime-card h3 { color: var(--pink); margin-bottom: 6px; }
+.anime-card p { color: var(--muted); font-size: 0.95rem; }
+
 /* @@more@@ */

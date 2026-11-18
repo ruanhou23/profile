@@ -28,4 +28,70 @@ a:hover { text-decoration: underline; }
 
 main { max-width: 960px; margin: 0 auto; padding: 0 20px 40px; }
 
+/* --- Hero --- */
+.hero {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 64px 20px;
+  background:
+    radial-gradient(600px 300px at 20% 10%, rgba(255, 45, 120, 0.18), transparent 60%),
+    radial-gradient(600px 300px at 80% 90%, rgba(0, 229, 255, 0.14), transparent 60%),
+    var(--bg);
+}
+
+.hero-inner { max-width: 720px; }
+
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 3px solid var(--pink);
+  box-shadow: 0 0 32px rgba(255, 45, 120, 0.55), 0 0 64px rgba(0, 229, 255, 0.25);
+  background: var(--card);
+}
+
+.hero-jp {
+  margin-top: 20px;
+  letter-spacing: 0.5em;
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+.hero h1 { font-size: 3rem; line-height: 1.15; margin: 8px 0 4px; }
+.grad {
+  background: linear-gradient(90deg, var(--pink), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline { font-size: 1.25rem; font-weight: 600; }
+.tagline-en { color: var(--muted); margin-top: 2px; }
+
+.typing { min-height: 1.6em; margin-top: 14px; color: var(--cyan); font-weight: 600; }
+.cursor { animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.hero-links { margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--pink), #ff5c39);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(255, 45, 120, 0.45);
+}
+.btn:hover { text-decoration: none; filter: brightness(1.1); }
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.25);
+}
+
 /* @@more@@ */

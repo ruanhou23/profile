@@ -42,4 +42,28 @@ function renderProjects() {
 
 renderProjects();
 
+// Typing effect in hero
+const typingLines = [
+  "Lập trình viên.",
+  "Làm video AI.",
+  "Fan anime.",
+  "Dùng Linux Mint.",
+  "Kể chuyện bằng chibi."
+];
+const typingEl = document.getElementById("typing");
+if (typingEl) {
+  let line = 0, char = 0, deleting = false;
+  function tick() {
+    const current = typingLines[line];
+    typingEl.textContent = current.slice(0, char);
+    let delay = 90;
+    if (!deleting && char === current.length) { delay = 1600; deleting = true; }
+    else if (deleting && char === 0) { deleting = false; line = (line + 1) % typingLines.length; delay = 400; }
+    else if (deleting) { char--; delay = 35; }
+    else { char++; }
+    setTimeout(tick, delay);
+  }
+  tick();
+}
+
 // @@more@@

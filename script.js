@@ -199,3 +199,21 @@ if (themeBtn) {
 let savedTheme = "dark";
 try { savedTheme = localStorage.getItem("theme") || "dark"; } catch (e) {}
 applyTheme(savedTheme === "light" ? "light" : "dark");
+
+// Thanh tiến trình cuộn + nút về đầu trang (hiện sau 600px)
+const progressBar = document.getElementById("progress-bar");
+const backToTopBtn = document.getElementById("back-to-top");
+function onScrollProgress() {
+  const doc = document.documentElement;
+  const max = doc.scrollHeight - doc.clientHeight;
+  const pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+  if (progressBar) progressBar.style.width = pct + "%";
+  if (backToTopBtn) backToTopBtn.classList.toggle("show", doc.scrollTop > 600);
+}
+window.addEventListener("scroll", onScrollProgress, { passive: true });
+onScrollProgress();
+if (backToTopBtn) {
+  backToTopBtn.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}

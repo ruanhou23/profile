@@ -217,3 +217,25 @@ if (backToTopBtn) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
+
+// Con số: đếm tăng dần khi cuộn tới
+const statNums = document.querySelectorAll(".stat-num");
+const statObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    statObserver.unobserve(el);
+    const target = parseInt(el.getAttribute("data-target"), 10) || 0;
+    const suffix = el.getAttribute("data-suffix") || "";
+    const duration = 1200;
+    const start = performance.now();
+    function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}, { threshold: 0.4 });
+statNums.forEach(function (el) { statObserver.observe(el); });

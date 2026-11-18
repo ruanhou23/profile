@@ -417,3 +417,28 @@ body { padding-top: 56px; }
 }
 .back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 .back-to-top:hover { filter: brightness(1.15); }
+
+/* --- Con số (đếm tăng dần khi cuộn tới) --- */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+.stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.stat:hover { transform: translateY(-4px); border-color: var(--cyan); }
+.stat-num {
+  display: block;
+  font-size: 2.4rem; font-weight: 800; line-height: 1.1;
+  background: linear-gradient(90deg, var(--pink), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.stat-label { color: var(--muted); font-size: 0.95rem; }
+@media (max-width: 720px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}

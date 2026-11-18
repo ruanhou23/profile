@@ -90,3 +90,55 @@ const barObserver = new IntersectionObserver(function (entries) {
   });
 }, { threshold: 0.4 });
 bars.forEach(function (el) { barObserver.observe(el); });
+
+// Nhạc yêu thích: 6 bài, bấm thẻ để phát trong khung player
+const tracks = [
+  { title: "Nan Khước", artist: "Bình Sinh Bất Vãn", id: "euMLGsZxCPU" },
+  { title: "Tỳ Bà Khúc", artist: "Lan Âm Reine", id: "oByCpSJKhjM" },
+  { title: "Du Sơn Luyến (Remix)", artist: "Hải Luân", id: "uNhVovkgvnY" },
+  { title: "Quan Sơn Tửu", artist: "Đẳng Thập Yêu Quân", id: "M6KC0C4aWbA" },
+  { title: "Thập Niên Nhân Gian", artist: "Lý Thường Siêu", id: "9O_qeWoOKSA" },
+  { title: "Tứ Ngã", artist: "Nhất Chỉ Bạch Dương", id: "WQDgDHIrzUI" }
+];
+let currentTrack = -1;
+
+function renderMusic() {
+  const grid = document.getElementById("music-grid");
+  if (!grid) return;
+  grid.innerHTML = tracks.map(function (t, i) {
+    return '<article class="music-card" data-i="' + i + '" tabindex="0" role="button" aria-label="Phát ' + t.title + '">'
+      + '<span class="music-num">' + (i + 1) + '</span>'
+      + '<div class="music-info"><h3>' + t.title + '</h3><p>' + t.artist + '</p></div>'
+      + '<span class="music-play" aria-hidden="true">▶</span>'
+      + '<span class="music-badge">Đang phát</span>'
+      + '<span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>'
+      + '</article>';
+  }).join('');
+  grid.querySelectorAll(".music-card").forEach(function (card) {
+    card.addEventListener("click", function () { playTrack(parseInt(card.getAttribute("data-i"), 10)); });
+    card.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); playTrack(parseInt(card.getAttribute("data-i"), 10)); }
+    });
+  });
+}
+
+function playTrack(i) {
+  currentTrack = (i + tracks.length) % tracks.length;
+  const t = tracks[currentTrack];
+  const player = document.getElementById("player");
+  if (player) {
+    player.innerHTML = '<iframe src="https://www.youtube.com/embed/' + t.id + '?autoplay=1&rel=0" title="' + t.title + ' — ' + t.artist + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+  }
+  const now = document.getElementById("now-playing");
+  if (now) now.textContent = "Đang phát: " + t.title + " — " + t.artist;
+  document.querySelectorAll(".music-card").forEach(function (card, idx) {
+    card.classList.toggle("active", idx === currentTrack);
+  });
+}
+
+const prevBtn = document.getElementById("prev-track");
+if (prevBtn) prevBtn.addEventListener("click", function () { playTrack(currentTrack < 0 ? tracks.length - 1 : currentTrack - 1); });
+const nextBtn = document.getElementById("next-track");
+if (nextBtn) nextBtn.addEventListener("click", function () { playTrack(currentTrack < 0 ? 0 : currentTrack + 1); });
+
+renderMusic();

@@ -1,5 +1,34 @@
 // Ken | profile scripts
 
+// Chuỗi song ngữ VI/EN cho các nhãn động (nhạc, theme, game)
+const STR = {
+  vi: {
+    themeLight: "☀ Sáng", themeDark: "☾ Tối",
+    themeToLight: "Chuyển sang giao diện sáng", themeToDark: "Chuyển sang giao diện tối",
+    noTrack: "Chưa phát bài nào", nowPlaying: "Đang phát: ",
+    repeatOn: "Lặp lại: Bật", repeatOff: "Lặp lại: Tắt",
+    pickSong: "Chọn một bài bên dưới để phát",
+    gamePlaying: "Đang chơi — bấm vào sao để bắt!",
+    gameEnd: "Hết giờ! Bạn được {s} điểm. Kỷ lục hiện tại: {b}.",
+    gameEndNew: "Hết giờ! Bạn được {s} điểm — kỷ lục mới!",
+    gameCanvasIdle: "Bấm “Chơi” để bắt đầu bắt sao!"
+  },
+  en: {
+    themeLight: "☀ Light", themeDark: "☾ Dark",
+    themeToLight: "Switch to light theme", themeToDark: "Switch to dark theme",
+    noTrack: "No track playing", nowPlaying: "Now playing: ",
+    repeatOn: "Repeat: On", repeatOff: "Repeat: Off",
+    pickSong: "Pick a song below to play",
+    gamePlaying: "Playing — click the stars to catch them!",
+    gameEnd: "Time's up! You scored {s}. Best: {b}.",
+    gameEndNew: "Time's up! You scored {s} — new record!",
+    gameCanvasIdle: "Press “Play” to start catching stars!"
+  }
+};
+let currentLang = "vi";
+try { currentLang = localStorage.getItem("lang") || "vi"; } catch (e) {}
+if (currentLang !== "en") currentLang = "vi";
+
 const projects = [
   {
     name: "Muse AI Batch Studio",
@@ -164,7 +193,7 @@ function playTrack(i) {
     player.innerHTML = '<iframe src="https://www.youtube.com/embed/' + t.id + '?autoplay=1&rel=0" title="' + t.title + ' — ' + t.artist + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
   }
   const now = document.getElementById("now-playing");
-  if (now) now.textContent = "Đang phát: " + t.title + " — " + t.artist;
+  if (now) now.textContent = STR[currentLang].nowPlaying + t.title + " — " + t.artist;
   document.querySelectorAll(".music-card").forEach(function (card, idx) {
     card.classList.toggle("active", idx === currentTrack);
   });
@@ -210,7 +239,7 @@ if (shuffleBtn) shuffleBtn.addEventListener("click", function () {
 const repeatBtn = document.getElementById("repeat-track");
 if (repeatBtn) repeatBtn.addEventListener("click", function () {
   repeatAll = !repeatAll;
-  repeatBtn.textContent = repeatAll ? "Lặp lại: Bật" : "Lặp lại: Tắt";
+  repeatBtn.textContent = repeatAll ? STR[currentLang].repeatOn : STR[currentLang].repeatOff;
   repeatBtn.setAttribute("aria-pressed", repeatAll ? "true" : "false");
   repeatBtn.classList.toggle("active", repeatAll);
   updateNavButtons();
@@ -261,8 +290,8 @@ function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
   try { localStorage.setItem("theme", theme); } catch (e) {}
   if (themeBtn) {
-    themeBtn.textContent = theme === "light" ? "☾ Tối" : "☀ Sáng";
-    themeBtn.setAttribute("aria-label", theme === "light" ? "Chuyển sang giao diện tối" : "Chuyển sang giao diện sáng");
+    themeBtn.textContent = theme === "light" ? STR[currentLang].themeDark : STR[currentLang].themeLight;
+    themeBtn.setAttribute("aria-label", theme === "light" ? STR[currentLang].themeToDark : STR[currentLang].themeToLight);
   }
 }
 if (themeBtn) {
@@ -376,7 +405,7 @@ if (animeFilters) {
       ctx.fillStyle = "rgba(238, 240, 255, 0.7)";
       ctx.font = "20px sans-serif";
       ctx.textAlign = "center";
-      ctx.fillText("Bấm “Chơi” để bắt đầu bắt sao!", W / 2, H / 2);
+      ctx.fillText(STR[currentLang].gameCanvasIdle, W / 2, H / 2);
       return;
     }
     const dt = Math.min((now - lastTick) / 1000, 0.05);
@@ -397,9 +426,9 @@ if (animeFilters) {
       best = score;
       try { localStorage.setItem("starGameBest", String(best)); } catch (e) {}
       if (bestEl) bestEl.textContent = best;
-      if (msgEl) msgEl.textContent = "Hết giờ! Bạn được " + score + " điểm — kỷ lục mới!";
+      if (msgEl) msgEl.textContent = STR[currentLang].gameEndNew.replace("{s}", score);
     } else if (msgEl) {
-      msgEl.textContent = "Hết giờ! Bạn được " + score + " điểm. Kỷ lục hiện tại: " + best + ".";
+      msgEl.textContent = STR[currentLang].gameEnd.replace("{s}", score).replace("{b}", best);
     }
     if (startBtn) startBtn.disabled = false;
   }
@@ -410,7 +439,7 @@ if (animeFilters) {
     playing = true;
     if (scoreEl) scoreEl.textContent = "0";
     if (timeEl) timeEl.textContent = String(DURATION);
-    if (msgEl) msgEl.textContent = "Đang chơi — bấm vào sao để bắt!";
+    if (msgEl) msgEl.textContent = STR[currentLang].gamePlaying;
     if (startBtn) startBtn.disabled = true;
     lastSpawn = performance.now();
     lastTick = performance.now();
@@ -443,3 +472,35 @@ if (animeFilters) {
   if (restartBtn) restartBtn.addEventListener("click", startGame);
   draw(performance.now());
 })();
+
+// Chuyển ngôn ngữ VI/EN (lưu vào localStorage; tên bài hát và anime giữ nguyên)
+const langBtn = document.getElementById("lang-toggle");
+function applyLang(lang) {
+  currentLang = lang === "en" ? "en" : "vi";
+  try { localStorage.setItem("lang", currentLang); } catch (e) {}
+  document.documentElement.setAttribute("lang", currentLang);
+  document.querySelectorAll("[data-vi]").forEach(function (el) {
+    el.textContent = currentLang === "en" ? el.getAttribute("data-en") : el.getAttribute("data-vi");
+  });
+  document.querySelectorAll("[data-vi-ph]").forEach(function (el) {
+    el.setAttribute("placeholder", currentLang === "en" ? el.getAttribute("data-en-ph") : el.getAttribute("data-vi-ph"));
+  });
+  if (langBtn) langBtn.textContent = currentLang === "en" ? "VI" : "EN";
+  applyTheme(document.documentElement.getAttribute("data-theme") || "dark");
+  const repeatB = document.getElementById("repeat-track");
+  if (repeatB) repeatB.textContent = repeatAll ? STR[currentLang].repeatOn : STR[currentLang].repeatOff;
+  const nowEl = document.getElementById("now-playing");
+  if (nowEl) {
+    nowEl.textContent = currentTrack >= 0
+      ? STR[currentLang].nowPlaying + tracks[currentTrack].title + " — " + tracks[currentTrack].artist
+      : STR[currentLang].noTrack;
+  }
+  const pt = document.getElementById("player-title");
+  if (pt) pt.textContent = STR[currentLang].pickSong;
+}
+if (langBtn) {
+  langBtn.addEventListener("click", function () {
+    applyLang(currentLang === "en" ? "vi" : "en");
+  });
+}
+applyLang(currentLang);

@@ -13,17 +13,18 @@
   <nav class="topnav">
     <a class="brand" href="#top">Ken</a>
     <div class="nav-links">
-      <a href="#about">Về mình</a>
-      <a href="#skills">Kỹ năng</a>
-      <a href="#stats">Con số</a>
-      <a href="#journey">Hành trình</a>
-      <a href="#projects">Dự án</a>
-      <a href="#anime">Anime</a>
-      <a href="#music">Nhạc</a>
-      <a href="#game">Game</a>
-      <a href="#contact">Liên hệ</a>
+      <a href="#about" data-vi="Về mình" data-en="About">Về mình</a>
+      <a href="#skills" data-vi="Kỹ năng" data-en="Skills">Kỹ năng</a>
+      <a href="#stats" data-vi="Con số" data-en="Stats">Con số</a>
+      <a href="#journey" data-vi="Hành trình" data-en="Journey">Hành trình</a>
+      <a href="#projects" data-vi="Dự án" data-en="Projects">Dự án</a>
+      <a href="#anime" data-vi="Anime" data-en="Anime">Anime</a>
+      <a href="#music" data-vi="Nhạc" data-en="Music">Nhạc</a>
+      <a href="#game" data-vi="Game" data-en="Game">Game</a>
+      <a href="#contact" data-vi="Liên hệ" data-en="Contact">Liên hệ</a>
     </div>
     <button class="nav-btn" id="theme-toggle" type="button" aria-label="Chuyển sang giao diện sáng">☀ Sáng</button>
+    <button class="nav-btn" id="lang-toggle" type="button" aria-label="Switch language / Chuyển ngôn ngữ">EN</button>
   </nav>
   <canvas id="stars" aria-hidden="true"></canvas>
   <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -33,18 +34,18 @@
       <img class="avatar" src="avatar.svg" alt="Avatar chibi của Ken" width="160" height="160">
       <p class="hero-jp">プロフィール</p>
       <h1>Ken</h1>
-      <p class="tagline">Lập trình viên • Làm video AI • Fan anime</p>
-      <p class="tagline-en">IT Developer • AI Video Creator • Anime lover</p>
+      <p class="tagline" data-vi="Lập trình viên • Làm video AI • Fan anime" data-en="Developer • AI Video Creator • Anime Fan">Lập trình viên • Làm video AI • Fan anime</p>
+      <p class="tagline-en" data-vi="IT Developer • AI Video Creator • Anime lover" data-en="">IT Developer • AI Video Creator • Anime lover</p>
       <p class="typing"><span id="typing"></span><span class="cursor" aria-hidden="true">▌</span></p>
       <div class="hero-links">
-        <a class="btn btn-ghost" href="#projects">Xem dự án ↓</a>
+        <a class="btn btn-ghost" href="#projects" data-vi="Xem dự án ↓" data-en="View projects ↓">Xem dự án ↓</a>
       </div>
     </div>
   </header>
 
   <main>
     <section id="about" class="section reveal">
-      <h2><span class="jp">私について</span> Về mình</h2>
+      <h2><span class="jp">私について</span> <span data-vi="Về mình" data-en="About">Về mình</span></h2>
       <p class="lead">Chào! Mình là <strong>Ken</strong> — lập trình viên, làm video bằng AI và là fan anime. Mình thích biến ý tưởng thành sản phẩm thật: từ tool làm video, game, tới phim ngắn.</p>
       <ul class="about-list">
         <li>🐧 <strong>Linux Mint</strong> là máy chính — code, render và chạy tool đều trên đó.</li>
@@ -55,7 +56,7 @@
     </section>
 
     <section id="skills" class="section reveal">
-      <h2><span class="jp">スキル</span> Kỹ năng</h2>
+      <h2><span class="jp">スキル</span> <span data-vi="Kỹ năng" data-en="Skills">Kỹ năng</span></h2>
       <div class="skills-grid">
         <div class="skill"><span class="skill-name">Python</span><div class="bar"><i data-w="90"></i></div><span class="skill-pct">90%</span></div>
         <div class="skill"><span class="skill-name">JavaScript</span><div class="bar"><i data-w="85"></i></div><span class="skill-pct">85%</span></div>
@@ -69,75 +70,75 @@
     </section>
 
     <section id="stats" class="section reveal">
-      <h2><span class="jp">数字</span> Con số</h2>
+      <h2><span class="jp">数字</span> <span data-vi="Con số" data-en="Stats">Con số</span></h2>
       <div class="stats-grid">
-        <div class="stat"><span class="stat-num" data-target="4" data-suffix="+">0</span><span class="stat-label">Dự án</span></div>
-        <div class="stat"><span class="stat-num" data-target="6">0</span><span class="stat-label">Bài hát yêu thích</span></div>
-        <div class="stat"><span class="stat-num" data-target="6">0</span><span class="stat-label">Anime yêu thích</span></div>
-        <div class="stat"><span class="stat-num" data-target="10">0</span><span class="stat-label">Kênh YouTube</span></div>
+        <div class="stat"><span class="stat-num" data-target="4" data-suffix="+">0</span><span class="stat-label" data-vi="Dự án" data-en="Projects">Dự án</span></div>
+        <div class="stat"><span class="stat-num" data-target="6">0</span><span class="stat-label" data-vi="Bài hát yêu thích" data-en="Favorite songs">Bài hát yêu thích</span></div>
+        <div class="stat"><span class="stat-num" data-target="6">0</span><span class="stat-label" data-vi="Anime yêu thích" data-en="Favorite anime">Anime yêu thích</span></div>
+        <div class="stat"><span class="stat-num" data-target="10">0</span><span class="stat-label" data-vi="Kênh YouTube" data-en="YouTube channels">Kênh YouTube</span></div>
       </div>
     </section>
 
     <section id="journey" class="section reveal">
-      <h2><span class="jp">旅</span> Hành trình</h2>
-      <p class="section-note">Những mốc đáng nhớ từ lúc bắt đầu làm video AI.</p>
+      <h2><span class="jp">旅</span> <span data-vi="Hành trình" data-en="Journey">Hành trình</span></h2>
+      <p class="section-note" data-vi="Những mốc đáng nhớ từ lúc bắt đầu làm video AI." data-en="Milestones since I started making AI videos.">Những mốc đáng nhớ từ lúc bắt đầu làm video AI.</p>
       <ol class="timeline">
         <li>
           <span class="tl-date">12-11-2026</span>
-          <h3>Tool làm video chỉ cần tiêu đề</h3>
-          <p>Nhập mỗi tiêu đề, tool tự làm dàn ý, kịch bản, chia cảnh, prompt video và lời thoại.</p>
+          <h3 data-vi="Tool làm video chỉ cần tiêu đề" data-en="Title-only video tool">Tool làm video chỉ cần tiêu đề</h3>
+          <p data-vi="Nhập mỗi tiêu đề, tool tự làm dàn ý, kịch bản, chia cảnh, prompt video và lời thoại." data-en="Type just a title and the tool writes the outline, script, scene split, video prompts and voiceover.">Nhập mỗi tiêu đề, tool tự làm dàn ý, kịch bản, chia cảnh, prompt video và lời thoại.</p>
         </li>
         <li>
           <span class="tl-date">13-11-2026</span>
-          <h3>Video AI đầu tiên</h3>
-          <p>Cảnh cá voi xanh chibi 10 giây, lồng tiếng clone giọng mình.</p>
+          <h3 data-vi="Video AI đầu tiên" data-en="First AI video">Video AI đầu tiên</h3>
+          <p data-vi="Cảnh cá voi xanh chibi 10 giây, lồng tiếng clone giọng mình." data-en="A 10-second chibi blue-whale scene, voiced with my cloned voice.">Cảnh cá voi xanh chibi 10 giây, lồng tiếng clone giọng mình.</p>
         </li>
         <li>
           <span class="tl-date">15-11-2026</span>
-          <h3>Hệ thống key bản quyền + mở khóa video 300s</h3>
-          <p>Key bản quyền 30 ngày, mở khóa làm video dài 5 phút cho mọi phong cách.</p>
+          <h3 data-vi="Hệ thống key bản quyền + mở khóa video 300s" data-en="License key system + 300s video unlock">Hệ thống key bản quyền + mở khóa video 300s</h3>
+          <p data-vi="Key bản quyền 30 ngày, mở khóa làm video dài 5 phút cho mọi phong cách." data-en="30-day license keys, unlocking 5-minute videos for every style.">Key bản quyền 30 ngày, mở khóa làm video dài 5 phút cho mọi phong cách.</p>
         </li>
         <li>
           <span class="tl-date">16-11-2026</span>
-          <h3>Nhạc AI Bến Trăng và Trống Đồng</h3>
-          <p>Hai bài nhạc AI tự sáng tác lời: Bến Trăng 9.2/10 và Trống Đồng 9.5/10.</p>
+          <h3 data-vi="Nhạc AI Bến Trăng và Trống Đồng" data-en="AI songs Bến Trăng and Trống Đồng">Nhạc AI Bến Trăng và Trống Đồng</h3>
+          <p data-vi="Hai bài nhạc AI tự sáng tác lời: Bến Trăng 9.2/10 và Trống Đồng 9.5/10." data-en="Two AI songs with self-written lyrics: Bến Trăng 9.2/10 and Trống Đồng 9.5/10.">Hai bài nhạc AI tự sáng tác lời: Bến Trăng 9.2/10 và Trống Đồng 9.5/10.</p>
         </li>
         <li>
           <span class="tl-date">17-11-2026</span>
-          <h3>Phim Gothic 1 phút + thiết kế game sinh tồn</h3>
-          <p>Phim ngắn “Bức thư lúc nửa đêm” và bản thiết kế game sinh tồn người que với Max.</p>
+          <h3 data-vi="Phim Gothic 1 phút + thiết kế game sinh tồn" data-en="1-minute Gothic film + survival game design">Phim Gothic 1 phút + thiết kế game sinh tồn</h3>
+          <p data-vi="Phim ngắn “Bức thư lúc nửa đêm” và bản thiết kế game sinh tồn người que với Max." data-en="Short film “Bức thư lúc nửa đêm” and the stickman survival game design starring Max.">Phim ngắn “Bức thư lúc nửa đêm” và bản thiết kế game sinh tồn người que với Max.</p>
         </li>
         <li>
           <span class="tl-date">19-11-2026</span>
-          <h3>Kế hoạch 10 kênh YouTube và trang profile này</h3>
-          <p>Mở 10 kênh YouTube và ra mắt trang profile cá nhân này.</p>
+          <h3 data-vi="Kế hoạch 10 kênh YouTube và trang profile này" data-en="10 YouTube channels plan and this profile">Kế hoạch 10 kênh YouTube và trang profile này</h3>
+          <p data-vi="Mở 10 kênh YouTube và ra mắt trang profile cá nhân này." data-en="Launching 10 YouTube channels and this personal profile page.">Mở 10 kênh YouTube và ra mắt trang profile cá nhân này.</p>
         </li>
       </ol>
     </section>
 
     <section id="projects" class="section reveal">
-      <h2><span class="jp">プロジェクト</span> Dự án</h2>
-      <p class="section-note">Một số thứ mình đang làm.</p>
+      <h2><span class="jp">プロジェクト</span> <span data-vi="Dự án" data-en="Projects">Dự án</span></h2>
+      <p class="section-note" data-vi="Một số thứ mình đang làm." data-en="Some things I'm working on.">Một số thứ mình đang làm.</p>
       <div class="project-tools">
         <div class="filter-chips" id="project-filters">
-          <button class="chip active" data-filter="all" type="button">Tất cả</button>
-          <button class="chip" data-filter="video" type="button">Video AI</button>
-          <button class="chip" data-filter="game" type="button">Game</button>
+          <button class="chip active" data-filter="all" type="button" data-vi="Tất cả" data-en="All">Tất cả</button>
+          <button class="chip" data-filter="video" type="button" data-vi="Video AI" data-en="AI Video">Video AI</button>
+          <button class="chip" data-filter="game" type="button" data-vi="Game" data-en="Game">Game</button>
         </div>
-        <input class="search-input" id="project-search" type="search" placeholder="Tìm dự án..." aria-label="Tìm dự án">
+        <input class="search-input" id="project-search" type="search" placeholder="Tìm dự án..." data-vi-ph="Tìm dự án..." data-en-ph="Search projects..." aria-label="Tìm dự án">
       </div>
       <div class="projects-grid" id="projects-grid"></div>
       <noscript><p>Các dự án: Muse AI Batch Studio, Game Beta Test, Chibi Explainer Videos, phim ngắn Gothic “Bức thư lúc nửa đêm”.</p></noscript>
     </section>
 
     <section id="anime" class="section reveal">
-      <h2><span class="jp">アニメ</span> Anime yêu thích</h2>
-      <p class="section-note">Danh sách mẫu — đổi sau theo gu của mình (xem ghi chú trong README).</p>
+      <h2><span class="jp">アニメ</span> <span data-vi="Anime yêu thích" data-en="Favorite Anime">Anime yêu thích</span></h2>
+      <p class="section-note" data-vi="Danh sách mẫu — đổi sau theo gu của mình (xem ghi chú trong README)." data-en="Sample list — I'll swap it to my taste later (see the README note).">Danh sách mẫu — đổi sau theo gu của mình (xem ghi chú trong README).</p>
       <div class="filter-chips" id="anime-filters">
-        <button class="chip active" data-filter="all" type="button">Tất cả</button>
-        <button class="chip" data-filter="action" type="button">Hành động</button>
-        <button class="chip" data-filter="adventure" type="button">Phiêu lưu</button>
-        <button class="chip" data-filter="fantasy" type="button">Giả tưởng</button>
+        <button class="chip active" data-filter="all" type="button" data-vi="Tất cả" data-en="All">Tất cả</button>
+        <button class="chip" data-filter="action" type="button" data-vi="Hành động" data-en="Action">Hành động</button>
+        <button class="chip" data-filter="adventure" type="button" data-vi="Phiêu lưu" data-en="Adventure">Phiêu lưu</button>
+        <button class="chip" data-filter="fantasy" type="button" data-vi="Giả tưởng" data-en="Fantasy">Giả tưởng</button>
       </div>
       <div class="anime-grid">
         <article class="anime-card" data-genre="adventure"><h3>One Piece</h3><p>Hành trình của Luffy và băng Mũ Rơm đi tìm kho báu vĩ đại nhất.</p></article>
@@ -150,23 +151,23 @@
     </section>
 
     <section id="music" class="section reveal">
-      <h2><span class="jp">音楽</span> Nhạc yêu thích</h2>
-      <p class="section-note">6 bài nhạc Hoa mình nghe nhiều nhất — bấm vào bài để phát.</p>
+      <h2><span class="jp">音楽</span> <span data-vi="Nhạc yêu thích" data-en="Favorite Music">Nhạc yêu thích</span></h2>
+      <p class="section-note" data-vi="6 bài nhạc Hoa mình nghe nhiều nhất — bấm vào bài để phát." data-en="The 6 Chinese songs I listen to most — click a song to play.">6 bài nhạc Hoa mình nghe nhiều nhất — bấm vào bài để phát.</p>
       <div class="player-wrap">
         <div class="player" id="player">
           <div class="player-placeholder" id="player-placeholder">
             <span class="player-note" aria-hidden="true">♪</span>
-            <p id="player-title">Chọn một bài bên dưới để phát</p>
+            <p id="player-title" data-vi="Chọn một bài bên dưới để phát" data-en="Pick a song below to play">Chọn một bài bên dưới để phát</p>
           </div>
         </div>
         <div class="player-controls">
-          <button class="btn btn-ghost" id="prev-track" type="button">← Bài trước</button>
-          <span class="now-playing" id="now-playing">Chưa phát bài nào</span>
-          <button class="btn btn-ghost" id="next-track" type="button">Bài sau →</button>
+          <button class="btn btn-ghost" id="prev-track" type="button" data-vi="← Bài trước" data-en="← Previous">← Bài trước</button>
+          <span class="now-playing" id="now-playing" data-vi="Chưa phát bài nào" data-en="No track playing">Chưa phát bài nào</span>
+          <button class="btn btn-ghost" id="next-track" type="button" data-vi="Bài sau →" data-en="Next →">Bài sau →</button>
         </div>
         <div class="player-controls player-controls-2">
-          <button class="btn btn-ghost" id="shuffle-track" type="button">Ngẫu nhiên</button>
-          <button class="btn btn-ghost" id="repeat-track" type="button" aria-pressed="false">Lặp lại: Tắt</button>
+          <button class="btn btn-ghost" id="shuffle-track" type="button" data-vi="Ngẫu nhiên" data-en="Shuffle">Ngẫu nhiên</button>
+          <button class="btn btn-ghost" id="repeat-track" type="button" aria-pressed="false" data-vi="Lặp lại: Tắt" data-en="Repeat: Off">Lặp lại: Tắt</button>
         </div>
       </div>
       <div class="music-grid" id="music-grid"></div>
@@ -174,32 +175,32 @@
     </section>
 
     <section id="game" class="section reveal">
-      <h2><span class="jp">ゲーム</span> Bắt sao</h2>
-      <p class="section-note">Bấm vào các ngôi sao rơi để ghi điểm — 30 giây, bắt càng nhiều càng tốt!</p>
+      <h2><span class="jp">ゲーム</span> <span data-vi="Bắt sao" data-en="Star Catcher">Bắt sao</span></h2>
+      <p class="section-note" data-vi="Bấm vào các ngôi sao rơi để ghi điểm — 30 giây, bắt càng nhiều càng tốt!" data-en="Click the falling stars to score — 30 seconds, catch as many as you can!">Bấm vào các ngôi sao rơi để ghi điểm — 30 giây, bắt càng nhiều càng tốt!</p>
       <div class="game-wrap">
         <canvas id="game-canvas" width="640" height="360"></canvas>
         <div class="game-bar">
-          <span>Điểm: <strong id="game-score">0</strong></span>
-          <span>Thời gian: <strong id="game-time">30</strong>s</span>
-          <span>Kỷ lục: <strong id="game-best">0</strong></span>
+          <span><span data-vi="Điểm:" data-en="Score:">Điểm:</span> <strong id="game-score">0</strong></span>
+          <span><span data-vi="Thời gian:" data-en="Time:">Thời gian:</span> <strong id="game-time">30</strong>s</span>
+          <span><span data-vi="Kỷ lục:" data-en="Best:">Kỷ lục:</span> <strong id="game-best">0</strong></span>
         </div>
         <div class="game-actions">
-          <button class="btn" id="game-start" type="button">Chơi</button>
-          <button class="btn btn-ghost" id="game-restart" type="button">Chơi lại</button>
+          <button class="btn" id="game-start" type="button" data-vi="Chơi" data-en="Play">Chơi</button>
+          <button class="btn btn-ghost" id="game-restart" type="button" data-vi="Chơi lại" data-en="Play again">Chơi lại</button>
         </div>
-        <p class="game-msg" id="game-msg">Bấm “Chơi” để bắt đầu!</p>
+        <p class="game-msg" id="game-msg" data-vi="Bấm “Chơi” để bắt đầu!" data-en="Press “Play” to start!">Bấm “Chơi” để bắt đầu!</p>
       </div>
     </section>
 
     <section id="contact" class="section reveal">
-      <h2><span class="jp">連絡先</span> Liên hệ</h2>
-      <p class="lead">Cảm ơn bạn đã ghé thăm — hẹn gặp ở video tiếp theo!</p>
+      <h2><span class="jp">連絡先</span> <span data-vi="Liên hệ" data-en="Contact">Liên hệ</span></h2>
+      <p class="lead" data-vi="Cảm ơn bạn đã ghé thăm — hẹn gặp ở video tiếp theo!" data-en="Thanks for visiting — see you in the next video!">Cảm ơn bạn đã ghé thăm — hẹn gặp ở video tiếp theo!</p>
     </section>
 
   </main>
 
   <footer>
-    <p>© 2026 Ken · Made with ♥ and anime · <a href="#top">Về đầu trang ↑</a></p>
+    <p><span>© 2026 Ken · Made with ♥ and anime · </span><a href="#top" data-vi="Về đầu trang ↑" data-en="Back to top ↑">Về đầu trang ↑</a></p>
   </footer>
 
   <button class="back-to-top" id="back-to-top" type="button" aria-label="Về đầu trang">↑</button>

@@ -35,3 +35,15 @@ Khúc, Du Sơn Luyến (Remix), Quan Sơn Tửu, Thập Niên Nhân Gian, Tứ N
 Bấm vào bài để phát (YouTube embed, autoplay), nút Bài trước / Bài sau để
 chuyển bài. Thẻ đang phát có nhãn "Đang phát" và vạch equalizer nhảy.
 Đổi danh sách trong mảng `tracks` ở `script.js` (mục "Nhạc yêu thích").
+
+## Chức năng đã có
+
+- Chuyển giao diện sáng/tối (nút trên thanh điều hướng, lưu lựa chọn)
+- Thanh tiến trình cuộn + nút về đầu trang
+- Con số đếm tăng dần khi cuộn tới (4 dự án, 6 bài hát, 6 anime, 10 kênh YouTube)
+- Timeline hành trình 6 mốc (12-11 → 19-11-2026)
+- Lọc anime theo thể loại (Tất cả / Hành động / Phiêu lưu / Giả tưởng)
+- Lọc dự án theo nhóm (Video AI / Game) + tìm kiếm theo tên/mô tả
+- Nhạc: phát ngẫu nhiên + lặp lại toàn danh sách
+- Game bắt sao: canvas, 30 giây, lưu kỷ lục
+- Chuyển ngôn ngữ Việt/Anh (nút EN/VI trên thanh điều hướng, lưu lựa chọn)
